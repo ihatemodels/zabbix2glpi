@@ -57,17 +57,17 @@ def main():
 
     glpi = Glpi(user="user", password="password", 
                 app_token="your_glpi_user_token",
-                url="http://your_glpi_addres")
+                url="http://your_glpi_address")
 
     glpi.create_ticket(args.hostname, args.eventid, args.triggerid, args.ticketname,urgency=4)
 
-    # The method is responsible to assign the ticket to a specific user, remove for defaults.
-    glpi.assign_ticket("user to assign to newly created ticket", glpi.last_created_ticket_id)
+    # This method is responsible to assign the ticket to specific user.
+    glpi.assign_ticket("GLPI_username", glpi.last_created_ticket_id)
 
 
     zabbix = Zabbix(user='user',
                     password='password',
-                    url='http://your_zabbix_addres')
+                    url='http://your_zabbix_address')
 
     # The method acknowledge the event in Zabbix, remove if you dont want to.
     zabbix.ack_event(glpi_ticket=glpi.last_created_ticket_id, event_id=args.eventid)
