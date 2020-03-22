@@ -84,7 +84,7 @@ python3 /etc/zabbix/scripts/glpi_ticket.py -host "{HOST.NAME}" -eid "{EVENT.ID}"
 
 >  -user TICKETUSER  
 
-![scripts](img/main.png)
+![scripts](img/code.png)
 
 ## Show Time
 
