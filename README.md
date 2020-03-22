@@ -1,4 +1,4 @@
-# Open Glpi tickets based on Zabbix events
+# Open GLPI tickets based on Zabbix events
 
 The idea was inspired and renovated from this project https://github.com/janssenlima/zabbix-glpi
 
@@ -68,13 +68,13 @@ optional arguments:
 sudo systemctl restart zabbix-agent.service
 ```
 
-- Choose an action and under Operations create a new one to execute the script as follows.
-
-![operation](img/z-operation.png)
+- Choose an action and under Operations create a new one to execute the script as follows. From Target list choose the host where the scripts is located. Set the desired GLPI user and paste the following command. 
 
 ```bash 
 python3 /etc/zabbix/scripts/glpi_ticket.py -host "{HOST.NAME}" -eid "{EVENT.ID}" -tid "{TRIGGER.ID}" -tn "{TRIGGER.NAME}" -user "UserName in GLPI to assign the ticket"
 ```
+
+![operation](img/z-operation.png)
 
 ## Configure the script at glpi_ticket.py
 
