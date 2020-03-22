@@ -1,7 +1,7 @@
 import argparse
 from glpi import Glpi
-from glpi import TicketMissingError
 from zabbix import Zabbix
+
 
 def main():
 
@@ -55,25 +55,26 @@ def main():
 
     args = parser.parse_args()
 
-    glpi = Glpi(user="user", password="password", 
+    glpi = Glpi(user="user", password="password",
                 app_token="your_glpi_user_token",
                 url="http://your_glpi_address")
 
-    glpi.create_ticket(args.hostname, args.eventid, args.triggerid, args.ticketname,urgency=4)
+    glpi.create_ticket(args.hostname, args.eventid,
+                       args.triggerid, args.ticketname, urgency=4)
 
     # This method is responsible to assign the ticket to specific user.
     glpi.assign_ticket("GLPI_username", glpi.last_created_ticket_id)
-
 
     zabbix = Zabbix(user='user',
                     password='password',
                     url='http://your_zabbix_address')
 
     # The method acknowledge the event in Zabbix, remove if you dont want to.
-    zabbix.ack_event(glpi_ticket=glpi.last_created_ticket_id, event_id=args.eventid)
+    zabbix.ack_event(glpi_ticket=glpi.last_created_ticket_id,
+                     event_id=args.eventid)
 
     glpi.kill_session()
-    print(zabbix)
+
 
 if __name__ == "__main__":
     main()
