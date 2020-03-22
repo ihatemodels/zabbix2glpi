@@ -69,7 +69,7 @@ def main():
                     password='password',
                     url='http://your_zabbix_address')
 
-    # The method acknowledge the event in Zabbix, remove if you dont want to.
+    # This method acknowledge the event in Zabbix. Remove if you dont want to.
     zabbix.ack_event(glpi_ticket=glpi.last_created_ticket_id,
                      event_id=args.eventid)
 
